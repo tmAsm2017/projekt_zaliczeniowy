@@ -6,10 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
     <link rel="stylesheet" href="css/style.css"/>
-    <script src="js/jquery-2.1.4.min.js"></script>
-    <script src="js/jquery.mobile-1.4.5.min.js"></script>
-    <script src="js/script.js"></script>
-    <script src="cordova.js"></script>
 </head>
 <body>
 
@@ -29,41 +25,45 @@
     </div>
 
     <div data-role="main" class="ui-content">
-        <p>
-        <form>
-            <select>
-                <option value="null">Wybierz kolor parkingu</option>
-                <option value="red">Czerwony</option>
-                <option value="green">Zielony</option>
-                <option value="blue">Niebieski</option>
-                <option value="yeallow">Zółty</option>
-                <option value="purple">Pomarańczowy</option>
-            </select>
+        <div id="saved_info"><h4>Zaparkowałeś samochów w miejscu gdzie:</h4></div>
 
-            <div class="ui-field-contain">
-                <label for="park_number">Wpisz numer miejsca</label>
-                <input type="number" id="park_number">
-            </div>
+        <select id="colors">
+            <option>Wybierz kolor parkingu</option>
+            <option>Czerwony</option>
+            <option>Zielony</option>
+            <option>Niebieski</option>
+            <option>Zółty</option>
+            <option>Pomarańczowy</option>
+        </select>
 
-            <select>
-                <option value="null">Wybierz znak parkingu</option>
-                <option value="apple">Jabłko</option>
-                <option value="pear">Gruszka</option>
-                <option value="cherry">Wiśnia</option>
-                <option value="orange">Pomarańcza</option>
-            </select>
+        <select id="fruits">
+            <option>Wybierz znak parkingu</option>
+            <option>Jabłko</option>
+            <option>Gruszka</option>
+            <option>Wiśnia</option>
+            <option>Pomarańcza</option>
+        </select>
 
-            <input id="zapisz" type="submit" value="Zapisz">
-        </form>
-        </p>
+        <div class="ui-field-contain">
+            <label for="park_number">Wpisz numer miejsca</label>
+            <input type="number" id="park_number">
+        </div>
+
+        <button id="save">Zapisz</button>
     </div>
 
     <div data-role="footer">
-        <h3 style="font-size: smaller;">Projekt zaliczniowy stworzony na potrzeby przedmiotu Architektura środowisk mobilnych
+        <h3 style="font-size: smaller;">Projekt zaliczniowy stworzony na potrzeby przedmiotu Architektura środowisk
+            mobilnych
             <br>Tomasz Maj
             i Łukasz Kruszec</h3>
     </div>
 </div>
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+<script src="js/script.js"></script>
+<script src="cordova.js"></script>
 
 </body>
 </html>
