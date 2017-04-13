@@ -22,6 +22,10 @@ function onError(error) {
         'message: ' + error.message + '\n');
 }
 
+document.getElementById('clear').addEventListener('click', function (ev) {
+    localStorage.clear();
+});
+
 document.getElementById('save').addEventListener('click', function (ev) {
     let colorOptions = document.getElementById('colors');
     let fruitOptions = document.getElementById('fruits');
