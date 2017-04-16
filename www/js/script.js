@@ -27,9 +27,7 @@ function onError(error) {
 function getPhoto() {
     navigator.camera.getPicture(function (imageURI) { // onSuccess
         localStorage.setItem('photo', imageURI);
-        setTimeout(function () {
-            location.reload(true);
-        }, 1000);
+        location.reload(true);
     }, function (ex) { // onError
         navigator.notification.alert('Nie udało się zrobić zdjęcia');
     }, { // options
@@ -47,6 +45,7 @@ document.getElementById('save').addEventListener('click', function (ev) {
     let colorOptions = document.getElementById('colors');
     let fruitOptions = document.getElementById('fruits');
     let parkNumber = document.getElementById('park_number');
+    let parkLevel = document.getElementById('park_level');
 
     let colorIndex = colorOptions.selectedIndex;
     if (colorIndex !== 0) {
@@ -62,6 +61,10 @@ document.getElementById('save').addEventListener('click', function (ev) {
         localStorage.setItem('number', parkNumber.value);
     }
 
+    if (parkLevel.value !== '') {
+        localStorage.setItem('level', parkLevel.value);
+    }
+
     location.reload(false);
 });
 
@@ -69,19 +72,23 @@ function pageLoaded() {
     let storedColor = localStorage.getItem('color');
     let storedFruit = localStorage.getItem('fruit');
     let storedNumber = localStorage.getItem('number');
+    let storedLevel = localStorage.getItem('level');
     let storedPhoto = localStorage.getItem('photo');
 
     if (storedPhoto !== null) {
         addPhoto(storedPhoto);
     }
+    if (storedNumber !== null) {
+        addInfo('Numer: <b>' + storedNumber + '</b>')
+    }
+    if (storedLevel !== null) {
+        addInfo('Poziom: <b>' + storedLevel + '</b>')
+    }
     if (storedColor !== null) {
-        addInfo('Kolor jest <b>' + storedColor + '</b>');
+        addInfo('Kolor: <b>' + storedColor + '</b>');
     }
     if (storedFruit !== null) {
-        addInfo('Owoc to <b>' + storedFruit + '</b>')
-    }
-    if (storedNumber !== null) {
-        addInfo('O numerze <b>' + storedNumber + '</b>')
+        addInfo('Owoc: <b>' + storedFruit + '</b>')
     }
 
     function addInfo(text) {

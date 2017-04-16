@@ -12,11 +12,13 @@
 <div data-role="page" id="mainPage">
 
     <div data-role="header">
-        <h1>Gdzie zaparkowałem samochów..?</h1>
-        <a href="#advanced" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Opcje zaawansowane</a>
+        <div data-role="header">
+            <div class="title">Gdzie zaparkowałem samochów..?</div>
+            <a href="#advanced" data-icon="gear" class="ui-btn-right">Opcje zaawansowane</a>
+        </div>
     </div>
 
-    <div data-role="panel" id="advanced">
+    <div data-role="panel" id="advanced" data-position="right">
         <h3>
             <button id="photo">Zrób zdjęcie</button>
             <button id="gps">Pobierz marker GPS</button>
@@ -26,7 +28,17 @@
     </div>
 
     <div data-role="main" class="ui-content">
-        <div id="saved_info"><h4>Zaparkowałeś samochów w miejscu gdzie:</h4></div>
+        <div id="saved_info"><h4>Tutaj zaparkowałeś:</h4></div>
+
+        <div class="ui-field-contain">
+            <label for="park_number">Wpisz poziom parkingu</label>
+            <input type="number" id="park_level">
+        </div>
+
+        <div class="ui-field-contain">
+            <label for="park_number">Wpisz numer miejsca</label>
+            <input type="number" id="park_number">
+        </div>
 
         <select id="colors">
             <option>Wybierz kolor parkingu</option>
@@ -44,11 +56,6 @@
             <option>Wiśnia</option>
             <option>Pomarańcza</option>
         </select>
-
-        <div class="ui-field-contain">
-            <label for="park_number">Wpisz numer miejsca</label>
-            <input type="number" id="park_number">
-        </div>
 
         <button id="save">Zapisz</button>
     </div>

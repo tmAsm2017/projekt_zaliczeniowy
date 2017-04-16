@@ -1,5 +1,6 @@
-#zapisz {
+#save {
     background-color: #3cbb29;
+    margin-top: 20px;
 }
 
 #saved_info {
@@ -18,4 +19,17 @@
 
 #saved_info img {
     width: 100%;
+}
+
+.title {
+    text-align: left;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 10px 10px 10px 20px;
+}
+.advanced {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 100px;
 }
