@@ -64,7 +64,6 @@ document.getElementById('save').addEventListener('click', function (ev) {
 });
 
 function pageLoaded() {
-    let savedInfo = document.getElementById('saved_info');
     let storedColor = localStorage.getItem('color');
     let storedFruit = localStorage.getItem('fruit');
     let storedNumber = localStorage.getItem('number');
@@ -86,12 +85,17 @@ function pageLoaded() {
     function addInfo(text) {
         let tmpNode = document.createElement('p');
         tmpNode.innerHTML = text;
-        savedInfo.appendChild(tmpNode);
-        savedInfo.style.display = 'block';
+        append(tmpNode);
     }
     function addPhoto(imageURI) {
-        let tmpNode = document.createElement('img');
-        tmpNode.src = imageURI;
-        savedInfo.appendChild(tmpNode);
+        let tmpNode = document.createElement('a');
+        tmpNode.href = imageURI;
+        tmpNode.innerHTML = 'Kliknij aby zobaczyć zdjęcie';
+        append(tmpNode);
+    }
+    function append(node) {
+        let savedInfo = document.getElementById('saved_info');
+        savedInfo.appendChild(node);
+        savedInfo.style.display = 'block';
     }
 }
