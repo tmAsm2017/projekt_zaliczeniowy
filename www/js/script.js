@@ -4,7 +4,9 @@ pageLoaded();
 
 function onDeviceReady() {
     let gpsButton = document.getElementById("gps");
+    let photoButton = document.getElementById('photo');
     gpsButton.addEventListener("click", getPostition);
+    photoButton.addEventListener("click", getPhoto);
 }
 
 function getPostition() {
@@ -22,8 +24,21 @@ function onError(error) {
         'message: ' + error.message + '\n');
 }
 
+function getPhoto() {
+    navigator.camera.getPicture(function (imageURI) { // onSuccess
+        localStorage.setItem('photo', imageURI);
+        location.reload(false);
+    }, function (ex) { // onError
+        navigator.notification.alert('Nie udało się zrobić zdjęcia');
+    }, { // options
+        quality: 70,
+        destinationType: Camera.DestinationType.FILE_URI
+    });
+}
+
 document.getElementById('clear').addEventListener('click', function (ev) {
     localStorage.clear();
+    location.reload(false);
 });
 
 document.getElementById('save').addEventListener('click', function (ev) {
@@ -49,27 +64,34 @@ document.getElementById('save').addEventListener('click', function (ev) {
 });
 
 function pageLoaded() {
+    let savedInfo = document.getElementById('saved_info');
     let storedColor = localStorage.getItem('color');
     let storedFruit = localStorage.getItem('fruit');
     let storedNumber = localStorage.getItem('number');
+    let storedPhoto = localStorage.getItem('photo');
 
+    if (storedPhoto !== null) {
+        addPhoto(storedPhoto);
+    }
     if (storedColor !== null) {
         addInfo('Kolor jest <b>' + storedColor + '</b>');
     }
-
     if (storedFruit !== null) {
         addInfo('Owoc to <b>' + storedFruit + '</b>')
     }
-
     if (storedNumber !== null) {
         addInfo('O numerze <b>' + storedNumber + '</b>')
     }
 
     function addInfo(text) {
-        let savedInfo = document.getElementById('saved_info');
         let tmpNode = document.createElement('p');
         tmpNode.innerHTML = text;
         savedInfo.appendChild(tmpNode);
         savedInfo.style.display = 'block';
+    }
+    function addPhoto(imageURI) {
+        let tmpNode = document.createElement('img');
+        tmpNode.src = imageURI;
+        savedInfo.appendChild(tmpNode);
     }
 }
