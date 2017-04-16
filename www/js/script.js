@@ -27,7 +27,9 @@ function onError(error) {
 function getPhoto() {
     navigator.camera.getPicture(function (imageURI) { // onSuccess
         localStorage.setItem('photo', imageURI);
-        location.reload(false);
+        setTimeout(function () {
+            location.reload(true);
+        }, 1000);
     }, function (ex) { // onError
         navigator.notification.alert('Nie udało się zrobić zdjęcia');
     }, { // options
@@ -87,12 +89,13 @@ function pageLoaded() {
         tmpNode.innerHTML = text;
         append(tmpNode);
     }
+
     function addPhoto(imageURI) {
-        let tmpNode = document.createElement('a');
-        tmpNode.href = imageURI;
-        tmpNode.innerHTML = 'Kliknij aby zobaczyć zdjęcie';
+        let tmpNode = document.createElement('img');
+        tmpNode.src = imageURI;
         append(tmpNode);
     }
+
     function append(node) {
         let savedInfo = document.getElementById('saved_info');
         savedInfo.appendChild(node);
