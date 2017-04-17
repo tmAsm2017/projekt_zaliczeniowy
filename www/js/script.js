@@ -1,3 +1,7 @@
+var myApp = new Framework7({
+    swipePanel: 'left'
+});
+
 document.addEventListener("deviceready", onDeviceReady, false);
 
 pageLoaded();

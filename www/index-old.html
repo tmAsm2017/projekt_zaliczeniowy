@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Gdzie zaparkowałem samochód</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<div data-role="page" id="mainPage">
+
+    <div data-role="header">
+        <div data-role="header">
+            <div class="title">Gdzie zaparkowałem samochów..?</div>
+            <a href="#advanced" data-icon="gear" class="ui-btn-right">Opcje zaawansowane</a>
+        </div>
+    </div>
+
+    <div data-role="panel" id="advanced" data-position="right">
+        <h3>
+            <button id="photo">Zrób zdjęcie</button>
+            <button id="gps">Pobierz marker GPS</button>
+            <button id="clear">Wyczyść ustawienia</button>
+        </h3>
+        <p id='gps_info'></p>
+    </div>
+
+    <div data-role="main" class="ui-content">
+        <div id="saved_info"><h4>Tutaj zaparkowałeś:</h4></div>
+
+        <div class="ui-field-contain">
+            <label for="park_number">Wpisz poziom parkingu</label>
+            <input type="number" id="park_level">
+        </div>
+
+        <div class="ui-field-contain">
+            <label for="park_number">Wpisz numer miejsca</label>
+            <input type="number" id="park_number">
+        </div>
+
+        <select id="colors">
+            <option>Wybierz kolor parkingu</option>
+            <option>Czerwony</option>
+            <option>Zielony</option>
+            <option>Niebieski</option>
+            <option>Zółty</option>
+            <option>Pomarańczowy</option>
+        </select>
+
+        <select id="fruits">
+            <option>Wybierz znak parkingu</option>
+            <option>Jabłko</option>
+            <option>Gruszka</option>
+            <option>Wiśnia</option>
+            <option>Pomarańcza</option>
+        </select>
+
+        <button id="save">Zapisz</button>
+    </div>
+
+    <div data-role="footer">
+        <h3 style="font-size: smaller;">Projekt zaliczniowy stworzony na potrzeby przedmiotu Architektura środowisk
+            mobilnych
+            <br>Tomasz Maj
+            i Łukasz Kruszec</h3>
+    </div>
+</div>
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+<script src="js/script.js"></script>
+<script src="cordova.js"></script>
+
+</body>
+</html>

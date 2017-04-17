@@ -1,77 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <title>Gdzie zaparkowałem samochód</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
+    <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="theme-color" content="#2196f3">
+
+    <!-- Your app title -->
+    <title>My App</title>
+
+    <!-- This template defaults to the iOS CSS theme. To support both iOS and material design themes, see the Framework7 Tutorial at the link below:
+        http://www.idangero.us/framework7/tutorials/maintain-both-ios-and-material-themes-in-single-app.html
+     -->
+
+    <link rel="stylesheet" href="lib/framework7/css/framework7.material.min.css">
+    <link rel="stylesheet" href="lib/framework7/css/framework7.material.colors.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+    <!-- Status bar overlay for full screen mode (PhoneGap) -->
+    <div class="statusbar-overlay"></div>
 
-<div data-role="page" id="mainPage">
-
-    <div data-role="header">
-        <div data-role="header">
-            <div class="title">Gdzie zaparkowałem samochów..?</div>
-            <a href="#advanced" data-icon="gear" class="ui-btn-right">Opcje zaawansowane</a>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal">
+        <div class="content-block">
+            <p>Dodatkowe opcje</p>
+            <p><a href="#" class="button button-fill button-raised color-cyan" id="photo">Zrób zdjęcie</a></p>
+            <p><a href="#" class="button button-fill button-raised color-teal" id="gps">Pobierz marker GPS</a></p>
+            <p><a href="#" class="button button-fill button-raised color-red" id="clear">Wyczyść ustawienia</a></p>
+            <p id='gps_info'></p>
         </div>
     </div>
 
-    <div data-role="panel" id="advanced" data-position="right">
-        <h3>
-            <button id="photo">Zrób zdjęcie</button>
-            <button id="gps">Pobierz marker GPS</button>
-            <button id="clear">Wyczyść ustawienia</button>
-        </h3>
-        <p id='gps_info'></p>
-    </div>
+    <!-- Views -->
+    <div class="views">
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+            <!-- Pages container, because we use fixed-through navbar and toolbar, it has additional appropriate classes-->
+            <div class="pages navbar-fixed ">
 
-    <div data-role="main" class="ui-content">
-        <div id="saved_info"><h4>Tutaj zaparkowałeś:</h4></div>
+                <!-- Page, "data-page" contains page name -->
+                <div data-page="index" class="page">
+                    <!-- Top Navbar-->
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+                            <div class="left">
+                                <!--
+                          Right link contains only icon - additional "icon-only" class
+                          Additional "open-panel" class tells app to open panel when we click on this link
+                        -->
+                                <a href="#" class="link icon-only open-panel"><i class="icon icon-bars"></i></a>
+                            </div>
+                            <div class="center sliding">Gdzie zaparkowałem samochód..?</div>
 
-        <div class="ui-field-contain">
-            <label for="park_number">Wpisz poziom parkingu</label>
-            <input type="number" id="park_level">
+                        </div>
+                    </div>
+
+                    <!-- Scrollable page content -->
+                    <div class="page-content">
+                        <!--<div class="content-block">-->
+                        <!--<p>Page content goes here </p>-->
+                        <!-- Link to another page -->
+                        <!--<a href="about.html">About app</a>-->
+                        <!--<div class="content-block-title">Only titles</div>
+                        <div class="list-block">
+                            <ul>
+                                <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Item title</div>
+                                    </div>
+                                </li>
+                                <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Item with badge</div>
+                                    </div>
+                                </li>
+                                <li class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title">Another item</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>-->
+                        <div id="saved_info"></div>
+
+                        <div class="content-block-title">Wpisz dane:</div>
+                        <div class="list-block">
+                            <ul>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-input">
+                                                <input id="park_level" type="number" placeholder="Wpisz poziom parkingu">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-input">
+                                                <input id="park_number" type="number" placeholder="Wpisz numer miejsca">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">Kolor parkingu</div>
+                                            <div class="item-input">
+                                                <select id="colors">
+                                            <option>Czerwony</option>
+                                            <option>Zielony</option>
+                                            <option>Niebieski</option>
+                                            <option>Zółty</option>
+                                            <option>Pomarańczowy</option>
+                                        </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="item-content">
+                                        <div class="item-inner">
+                                            <div class="item-title label">Znak parkingu</div>
+                                            <div class="item-input">
+                                                <select id="fruits">
+                                             <option>Jabłko</option>
+                                            <option>Gruszka</option>
+                                            <option>Wiśnia</option>
+                                            <option>Pomarańcza</option>
+                                        </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <p><a href="#" class="button button-big button-fill button-raised color-cyan open-panel">Dodatkowe opcje</a></p>
+                        <p><a href="#" class="button button-big button-fill button-raised color-green open-panel" id="save">Zapisz</a></p>
+
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+
         </div>
-
-        <div class="ui-field-contain">
-            <label for="park_number">Wpisz numer miejsca</label>
-            <input type="number" id="park_number">
-        </div>
-
-        <select id="colors">
-            <option>Wybierz kolor parkingu</option>
-            <option>Czerwony</option>
-            <option>Zielony</option>
-            <option>Niebieski</option>
-            <option>Zółty</option>
-            <option>Pomarańczowy</option>
-        </select>
-
-        <select id="fruits">
-            <option>Wybierz znak parkingu</option>
-            <option>Jabłko</option>
-            <option>Gruszka</option>
-            <option>Wiśnia</option>
-            <option>Pomarańcza</option>
-        </select>
-
-        <button id="save">Zapisz</button>
     </div>
 
-    <div data-role="footer">
-        <h3 style="font-size: smaller;">Projekt zaliczniowy stworzony na potrzeby przedmiotu Architektura środowisk
-            mobilnych
-            <br>Tomasz Maj
-            i Łukasz Kruszec</h3>
-    </div>
-</div>
-
-<script src="js/jquery-2.1.4.min.js"></script>
-<script src="js/jquery.mobile-1.4.5.min.js"></script>
-<script src="js/script.js"></script>
-<script src="cordova.js"></script>
-
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
+    <!--<script type="text/javascript" src="js/script.js"></script>-->
+    <script type="text/javascript" src="js/script.js"></script>
 </body>
+
 </html>

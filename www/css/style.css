@@ -1,4 +1,4 @@
-#save {
+/*#save {
     background-color: #3cbb29;
     margin-top: 20px;
 }
@@ -32,4 +32,12 @@
     top: 4px;
     right: 4px;
     width: 100px;
+}*/
+
+.statusbar-overlay {
+    background: #ccc;
+}
+
+#saved_info img{
+    max-width:100%;
 }
