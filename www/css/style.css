@@ -41,3 +41,16 @@
 #saved_info img{
     max-width:100%;
 }
+
+.hide{
+    display: none;
+}
+
+  #map {
+        height: 40vh;
+        width: 100%;
+       }
+#saved_map{
+    height: 30vh;
+    width: 100%;
+}
