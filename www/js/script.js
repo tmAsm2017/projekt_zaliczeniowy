@@ -6,9 +6,11 @@ let localStorageDate = false;
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
-pageLoaded();
+
 
 function onDeviceReady() {
+    pageLoaded();
+
     let gpsButton = document.getElementById("gps");
     let photoButton = document.getElementById('photo');
     //  gpsButton.addEventListener("click", gpsOn);
@@ -26,21 +28,6 @@ function onDeviceReady() {
     }
 
     
-
-    
-//    launchnavigator.navigate(
-//                         [50.279306, -5.163158],
-//                         [50.342847, -4.749904],
-//                         function () {
-//                             alert("Plugin success");
-//                         },
-//                         function (error) {
-//                             alert("Plugin error: " + error);
-//                         });
-
-
-         
-
 
             
 }
@@ -64,7 +51,7 @@ var onMapSuccess = function (position) {
     Latitude = position.coords.latitude;
     Longitude = position.coords.longitude;
 
-    // alert(Latitude +  " " + Longitude )
+     alert(Latitude +  " " + Longitude )
 
     // Latitude = 50
     // Longitude = 40;
