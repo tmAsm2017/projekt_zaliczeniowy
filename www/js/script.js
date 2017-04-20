@@ -17,7 +17,8 @@ function onDeviceReady() {
     photoButton.addEventListener("click", getPhoto);
 
     if(!localStorageDate){
-        getMapLocation();
+        
+        gpsOn();
 
          if(document.getElementById('add_info').classList.contains('hide')){
             document.getElementById('add_info').classList.remove('hide');
@@ -29,9 +30,30 @@ function onDeviceReady() {
 
     
 
+    
+
             
 }
 //GPS --------------------------------------------------------------------
+function onRequestSuccess(success){
+    console.log("Successfully requested accuracy: "+success.message);
+    getMapLocation();
+}
+
+function onRequestFailure(error){
+    console.error("Accuracy request failed: error code="+error.code+"; error message="+error.message);
+    if(error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED){
+        if(window.confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")){
+            cordova.plugins.diagnostic.switchToLocationSettings();
+        }
+    }
+}
+
+function gpsOn() {
+    cordova.plugins.locationAccuracy.request(onRequestSuccess, onRequestFailure, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);  
+}
+
+
 
 let Latitude = undefined;
 let Longitude = undefined;
@@ -55,8 +77,8 @@ var onMapSuccess = function (position) {
 
     // Latitude = 50
     // Longitude = 40;
-
-    getMap(Latitude, Longitude,'map');
+    setTimeout(function(){  getMap(Latitude, Longitude,'map'); }, 300);
+   
 
 }
 
@@ -70,7 +92,7 @@ function getMap(latitude, longitude,id) {
         zoomControl: false
     };
 //  alert('GET: '+latitude + ' ' +longitude);
-    map = new google.maps.Map
+    let map = new google.maps.Map
     (document.getElementById(id), mapOptions);
 
 
