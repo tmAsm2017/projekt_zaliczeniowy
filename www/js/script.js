@@ -24,7 +24,22 @@ function onDeviceReady() {
             document.getElementById('save').classList.remove('hide');
         }
     }
+
     
+
+    
+//    launchnavigator.navigate(
+//                         [50.279306, -5.163158],
+//                         [50.342847, -4.749904],
+//                         function () {
+//                             alert("Plugin success");
+//                         },
+//                         function (error) {
+//                             alert("Plugin error: " + error);
+//                         });
+
+
+         
 
 
             
@@ -37,7 +52,7 @@ let Longitude = undefined;
 // Get geo coordinates
 
 function getMapLocation() {
-    // alert('get');
+    //alert('get');
     navigator.geolocation.getCurrentPosition
     (onMapSuccess, onMapError, { enableHighAccuracy: true });
 }
@@ -48,6 +63,11 @@ var onMapSuccess = function (position) {
 
     Latitude = position.coords.latitude;
     Longitude = position.coords.longitude;
+
+    // alert(Latitude +  " " + Longitude )
+
+    // Latitude = 50
+    // Longitude = 40;
 
     getMap(Latitude, Longitude,'map');
 
@@ -202,16 +222,17 @@ function pageLoaded() {
 
     function addMap(latitude,longitude){
         //  alert(latitude + ' ' +longitude);
-        let tmpNode = '<div id="saved_map"></div><p><a href="#" class="button button-big button-fill button-raised color-purple" id="nav">Nawiguj</a></p>';
+        // let tmpNode = '<div id="saved_map"></div><p><a href="#" class="button button-big button-fill button-raised color-purple" id="nav">Nawiguj</a></p>';
+         let tmpNode = '<div id="saved_map"></div>';
         // append(tmpNode);
         document.getElementById('saved_info').getElementsByTagName("ul")[0].innerHTML +=tmpNode;
 
-        getMap(latitude, longitude,'saved_map');
+         getMap(latitude, longitude,'saved_map');
 
         document.getElementById('nav').addEventListener('click', function (ev) {
             //  alert('aaaa');
-            launchnavigator.navigate([latitude, longitude])
-            //  launchnavigator.navigate("London, UK");
+            // launchnavigator.navigate([latitude, longitude])
+            launchnavigator.navigate("London, UK");
            
         });
 
