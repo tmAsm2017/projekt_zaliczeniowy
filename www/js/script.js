@@ -51,7 +51,7 @@ var onMapSuccess = function (position) {
     Latitude = position.coords.latitude;
     Longitude = position.coords.longitude;
 
-     alert(Latitude +  " " + Longitude )
+    //  alert(Latitude +  " " + Longitude )
 
     // Latitude = 50
     // Longitude = 40;
@@ -209,8 +209,8 @@ function pageLoaded() {
 
     function addMap(latitude,longitude){
         //  alert(latitude + ' ' +longitude);
-        // let tmpNode = '<div id="saved_map"></div><p><a href="#" class="button button-big button-fill button-raised color-purple" id="nav">Nawiguj</a></p>';
-         let tmpNode = '<div id="saved_map"></div>';
+        let tmpNode = '<div id="saved_map"></div><p><a href="#" class="button button-big button-fill button-raised color-purple" id="nav">Nawiguj</a></p>';
+        //  let tmpNode = '<div id="saved_map"></div>';
         // append(tmpNode);
         document.getElementById('saved_info').getElementsByTagName("ul")[0].innerHTML +=tmpNode;
 
@@ -219,7 +219,19 @@ function pageLoaded() {
         document.getElementById('nav').addEventListener('click', function (ev) {
             //  alert('aaaa');
             // launchnavigator.navigate([latitude, longitude])
-            launchnavigator.navigate("London, UK");
+            //launchnavigator.navigate("London, UK");
+            launchnavigator.isAppAvailable(launchnavigator.APP.GOOGLE_MAPS, function(isAvailable){
+                var app;
+                if(isAvailable){
+                    app = launchnavigator.APP.GOOGLE_MAPS;
+                }else{
+                    console.warn("Google Maps not available - falling back to user selection");
+                    app = launchnavigator.APP.USER_SELECT;
+                }
+                launchnavigator.navigate([latitude, longitude], {
+                    app: app
+                });
+            });
            
         });
 
