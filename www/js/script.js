@@ -15,10 +15,10 @@ function onDeviceReady() {
     let photoButton = document.getElementById('photo');
     //  gpsButton.addEventListener("click", gpsOn);
     photoButton.addEventListener("click", getPhoto);
-
-    if(!localStorageDate){
+//  localStorage.clear();
+     if(!localStorageDate){
         
-        gpsOn();
+       gpsOn();
 
          if(document.getElementById('add_info').classList.contains('hide')){
             document.getElementById('add_info').classList.remove('hide');
@@ -178,7 +178,7 @@ document.getElementById('save').addEventListener('click', function (ev) {
 
     let fruitIndex = fruitOptions.selectedIndex;
     if (fruitIndex !== 0) {
-        localStorage.setItem('fruit', fruitOptions.options[fruitIndex].text);
+        localStorage.setItem('fruit', fruitOptions.value);
     }
 
     if (parkNumber.value !== '') {
@@ -219,7 +219,7 @@ function pageLoaded() {
         addInfo('Kolor: <b>' + storedColor + '</b>');
     }
     if (storedFruit !== null) {
-        addInfo('Owoc: <b>' + storedFruit + '</b>')
+        addInfo('Znak: <b>' + storedFruit + '</b>')
     }
      if (storedMap_Latitude !== null) {
         addMap(storedMap_Latitude,storedMap_Longitude)
