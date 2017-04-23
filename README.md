@@ -22,5 +22,6 @@ Do wybudowania wersji mobilnej użyta została platforma PhoneGap firmy Adobe.
 ![screenshot 02](./screenshots/02.jpg "02")
 ![screenshot 03](./screenshots/03.jpg "03")
 ![screenshot 04](./screenshots/04.jpg "04")
+![screenshot 05](./screenshots/05.jpg "05")
 
 ## Projekt realizowany na potrzeby przemiotu Architektura środowisk mobilnych (J. Stal)
