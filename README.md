@@ -2,7 +2,7 @@
 
 Program pomaga zlokalizować samochód, na parkingach dużych centr handlowych, gdzie często zdarza się zapomnieć, w którym dokładnie miejscu pojazd został zaparkowany.
 
-## Aplikację można pobrać (tutaj)[https://build.phonegap.com/apps/2520364/install]
+## Aplikację można pobrać [tutaj](https://build.phonegap.com/apps/2520364/install)
 
 # Metoda działania
 
@@ -18,6 +18,9 @@ Do wybudowania wersji mobilnej użyta została platforma PhoneGap firmy Adobe.
 
 # Zrzuty ekranu
 
-...
+![screenshot 01](./screenshots/01.jpg "01")
+![screenshot 02](./screenshots/02.jpg "02")
+![screenshot 03](./screenshots/03.jpg "03")
+![screenshot 04](./screenshots/04.jpg "04")
 
 ## Projekt realizowany na potrzeby przemiotu Architektura środowisk mobilnych (J. Stal)
